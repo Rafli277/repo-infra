@@ -25,7 +25,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/myapp
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: password
-      SPRING_PROFILES_ACTIVE: production
+      SPRING_PROFILES_ACTIVE: docker
     expose:
       - '8080'
     depends_on:
@@ -44,7 +44,7 @@ services:
     image: rafli27/react-frontend:latest
     container_name: app-frontend
     environment:
-      - REACT_APP_API_URL=http://34.101.106.208/api
+      - REACT_APP_API_URL=http://localhost/api
     expose:
       - '80'
     depends_on:
