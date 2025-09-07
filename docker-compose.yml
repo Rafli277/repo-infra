@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: rafli27/springboot-backend:2
+    image: rafli27/springboot-backend:latest
     container_name: app-backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/myapp
