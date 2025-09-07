@@ -41,7 +41,7 @@ services:
 
   # React Frontend
   frontend:
-    image: rafli27/react-frontend:latest
+    image: rafli27/react-frontend:2
     container_name: app-frontend
     environment:
       - REACT_APP_API_URL=http://localhost:8080/api
