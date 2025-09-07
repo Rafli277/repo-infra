@@ -1,0 +1,28 @@
+name: Deploy Nginx
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nginx/**'
+    branches: [main]
+
+jobs:
+  deploy-nginx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Nginx
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd /opt/app-infra
+            echo "🚀 Deploying Nginx..."
+            docker-compose pull nginx
+            docker-compose up -d --no-deps nginx
+            echo "✅ Nginx deployed successfully!"

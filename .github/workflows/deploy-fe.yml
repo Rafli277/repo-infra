@@ -1,0 +1,28 @@
+name: Deploy Frontend
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'frontend/**'
+    branches: [main]
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Frontend only
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd /opt/app-infra
+            echo "🚀 Deploying Frontend..."
+            docker-compose pull frontend
+            docker-compose up -d --no-deps frontend
+            echo "✅ Frontend deployed successfully!"
