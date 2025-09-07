@@ -38,7 +38,7 @@ services:
       retries: 3
 
   frontend:
-    image: rafli27/react-frontend:2
+    image: rafli27/react-frontend:latest
     container_name: app-frontend
     environment:
       - REACT_APP_API_URL=http://backend:8080/api
