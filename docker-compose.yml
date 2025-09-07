@@ -19,7 +19,7 @@ services:
 
   # Spring Boot Backend
   backend:
-    image: your-username/springboot-backend:latest
+    image: rafli27/springboot-backend:latest
     container_name: app-backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/myapp
@@ -34,17 +34,17 @@ services:
       - app-network
     restart: unless-stopped
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080/actuator/health']
+      test: ['CMD', 'curl', '-f', 'http://34.101.106.208:8080/actuator/health']
       interval: 30s
       timeout: 10s
       retries: 3
 
   # React Frontend
   frontend:
-    image: your-username/react-frontend:latest
+    image: rafli27/react-frontend:latest
     container_name: app-frontend
     environment:
-      - REACT_APP_API_URL=http://localhost/api
+      - REACT_APP_API_URL=http://34.101.106.208/api
     expose:
       - '80'
     depends_on:
